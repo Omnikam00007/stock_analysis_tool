@@ -11,14 +11,14 @@ app.use(express.json({ limit: "2mb" }));
 // ─── Health ──────────────────────────────────────────────
 app.get("/health", (_req, res) => res.json({ status: "ok" }));
 
-// ─── OpenAI Chat Completions (streaming proxy) ──────────
+// ─── Gemini Chat Completions (OpenAI-compatible proxy) ───
 app.post("/api/chat", async (req, res) => {
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://generativelanguage.googleapis.com/v1beta/openai/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        Authorization: `Bearer ${process.env.GEMINI_API_KEY}`,
       },
       body: JSON.stringify(req.body),
     });
@@ -42,7 +42,7 @@ app.post("/api/chat", async (req, res) => {
       res.json(data);
     }
   } catch (err) {
-    console.error("OpenAI proxy error:", err);
+    console.error("Gemini proxy error:", err);
     res.status(500).json({ error: err.message });
   }
 });
