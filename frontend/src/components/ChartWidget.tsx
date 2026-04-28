@@ -144,7 +144,6 @@ export default function ChartWidget({ candles, symbol }: ChartWidgetProps) {
       resizeObserver.observe(containerRef.current!);
 
       // Store cleanup
-      const currentContainer = containerRef.current;
       return () => {
         resizeObserver.disconnect();
         chart.remove();
