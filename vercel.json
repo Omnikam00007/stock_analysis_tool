@@ -2,9 +2,5 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "installCommand": "cd frontend && npm install",
-  "framework": "vite",
-  "rewrites": [
-    { "source": "/api/chat", "destination": "/api/chat" },
-    { "source": "/api/stock/:endpoint", "destination": "/api/stock?endpoint=:endpoint" }
-  ]
+  "framework": "vite"
 }
